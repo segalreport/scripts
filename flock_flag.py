@@ -245,7 +245,7 @@ IFFY_CATEGORIES = [
     # REPRODUCTIVE HEALTHCARE SURVEILLANCE
     # -------------------------------------------------------------------------
     # In May 2025 a Texas sheriff's office searched ~83,000 Flock cameras
-    # nationwide for a woman who self-managed an abortion — the logged reason
+    # nationwide for a woman who self-managed an abortion - the logged reason
     # was "had an abortion, search for female" (reported by 404 Media; the
     # search reached cameras in Illinois and Washington). Post-Dobbs,
     # interstate ALPR searches tied to reproductive healthcare are a
@@ -267,7 +267,7 @@ IFFY_CATEGORIES = [
     # RELIGIOUS / PRESS / GENDER-IDENTITY TARGETING, PRIVATE BAIL RECOVERY
     # -------------------------------------------------------------------------
     # These four were validated against a 1.8M-row Minnesota dataset. Three had
-    # zero hits — which is the point: zero is the good outcome, check every
+    # zero hits - which is the point: zero is the good outcome, check every
     # time. The religion pattern deliberately EXCLUDES the bare words "church"
     # and "temple": in test data every church hit was the church as a
     # burglary/theft VICTIM (plus an officer surnamed Church), and "temple"
