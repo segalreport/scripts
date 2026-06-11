@@ -242,6 +242,28 @@ IFFY_CATEGORIES = [
     ),
 
     # -------------------------------------------------------------------------
+    # REPRODUCTIVE HEALTHCARE SURVEILLANCE
+    # -------------------------------------------------------------------------
+    # In May 2025 a Texas sheriff's office searched ~83,000 Flock cameras
+    # nationwide for a woman who self-managed an abortion — the logged reason
+    # was "had an abortion, search for female" (reported by 404 Media; the
+    # search reached cameras in Illinois and Washington). Post-Dobbs,
+    # interstate ALPR searches tied to reproductive healthcare are a
+    # documented abuse vector. Zero hits here is the good outcome — check
+    # every time. Some matches may be legitimate (e.g. a crime at a clinic);
+    # review before citing.
+    (
+        "Reproductive Healthcare — Abortion-Related Search",
+        re.compile(
+            r"\babortions?\b|planned\s*parenthood|"
+            r"reproductive\s*(health|clinic|care|rights)|"
+            r"\bmiscarriage\b|\bmifepristone\b|\bmisoprostol\b|"
+            r"abortion\s*(clinic|pill|provider)|fetal\s*remains",
+            re.IGNORECASE,
+        ),
+    ),
+
+    # -------------------------------------------------------------------------
     # PERSONAL USE
     # -------------------------------------------------------------------------
     (
