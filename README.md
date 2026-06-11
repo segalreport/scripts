@@ -97,7 +97,7 @@ Each row gets **at most one** immigration label. Patterns are checked in priorit
 | **Immigration - HSI** | "HSI", "Homeland Security Investigations" | HSI is ICE's investigative arm. In our dataset this was the single largest immigration category. |
 | **Immigration - ERO** | "ERO", "enforcement and removal" | ICE's Enforcement and Removal Operations - the deportation arm. |
 | **Immigration - CBP / Border Patrol / USBP** | "CBP", "USBP", "border patrol", "customs and border" | Customs and Border Protection searching an interior city's cameras is worth surfacing on its own. |
-| **Immigration - Deportation / Removal** | "deportat…", "removal order", "order of removal" | Explicit deportation language without naming an agency. |
+| **Immigration - Deportation / Removal** | "deportat…", "removal order", "order of removal" | Explicit deportation language. |
 | **Immigration - DHS** | "DHS", "Department of Homeland Security" | Parent department references. |
 | **Immigration - USCIS** | "USCIS" | Rare, but it appears. |
 | **Immigration - Structured Dropdown** | "Immigration (" | In 2026 Flock replaced free-text reasons with dropdown menus. The immigration option produces reasons like `Immigration (civil/administrative)`. **This pattern must run before the General pattern** - those strings also contain "immigra" and would otherwise be mislabeled. The dropdown change matters for transparency: the detail field is usually blank, so you can no longer tell whether a search was ICE-directed. |
