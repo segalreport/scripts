@@ -40,7 +40,7 @@ Notes on specific patterns
 - The custody pattern uses negative lookaheads to exclude legitimate phrases
   like "took custody of suspect" or "custody of prisoner."
 
-- Immigration — Structured Dropdown must appear BEFORE Immigration — General
+- Immigration - Structured Dropdown must appear BEFORE Immigration - General
   in the category list. Flock's 2026 dropdown generates reasons like
   "Immigration (civil/administrative)" which contain "immigra" and would
   mislabel as General if the order were reversed.
@@ -61,32 +61,32 @@ IMMIGRATION_CATEGORIES = [
     # Specific ICE phrases before bare \bice\b so "ice detainer" gets the
     # more descriptive label rather than the generic ICE one.
     (
-        "Immigration — ICE Hold / Detainer",
+        "Immigration - ICE Hold / Detainer",
         re.compile(
             r"ice\s*(hold|detainer|warrant|pick.?up|pickup|administrative)",
             re.IGNORECASE,
         ),
     ),
     (
-        "Immigration — ICE",
+        "Immigration - ICE",
         re.compile(r"\bice\b", re.IGNORECASE),
     ),
     (
-        "Immigration — HSI",
+        "Immigration - HSI",
         re.compile(
             r"\bhsi\b|homeland\s*security\s*investigations?",
             re.IGNORECASE,
         ),
     ),
     (
-        "Immigration — ERO",
+        "Immigration - ERO",
         re.compile(
             r"\bero\b|enforcement\s*(and|&|of)\s*removal",
             re.IGNORECASE,
         ),
     ),
     (
-        "Immigration — CBP / Border Patrol / USBP",
+        "Immigration - CBP / Border Patrol / USBP",
         re.compile(
             r"\bcbp\b|\busbp\b|border\s*patrol|"
             r"customs\s*[&]+\s*border|customs\s*and\s*border|"
@@ -95,14 +95,14 @@ IMMIGRATION_CATEGORIES = [
         ),
     ),
     (
-        "Immigration — Deportation / Removal",
+        "Immigration - Deportation / Removal",
         re.compile(
             r"deportat|removal\s*order|order\s*of\s*removal",
             re.IGNORECASE,
         ),
     ),
     (
-        "Immigration — DHS",
+        "Immigration - DHS",
         re.compile(
             r"\bdhs\b|dept\.?\s*of\s*homeland\s*security|"
             r"department\s*of\s*homeland",
@@ -110,18 +110,18 @@ IMMIGRATION_CATEGORIES = [
         ),
     ),
     (
-        "Immigration — USCIS",
+        "Immigration - USCIS",
         re.compile(r"\buscis\b", re.IGNORECASE),
     ),
-    # MUST precede Immigration — General.
+    # MUST precede Immigration - General.
     # Flock's 2026 dropdown produces "Immigration (civil/administrative)" which
     # contains "immigra" — if General ran first it would grab these entries.
     (
-        "Immigration — Structured Dropdown",
+        "Immigration - Structured Dropdown",
         re.compile(r"immigration\s*\(", re.IGNORECASE),
     ),
     (
-        "Immigration — General",
+        "Immigration - General",
         re.compile(r"immigra", re.IGNORECASE),
     ),
 ]
@@ -172,7 +172,7 @@ IFFY_CATEGORIES = [
     # RACIAL / ETHNIC TARGETING
     # -------------------------------------------------------------------------
     (
-        "Racial/Ethnic — Officer Noted No PC or Not Wanted",
+        "Racial/Ethnic - Officer Noted No PC or Not Wanted",
         re.compile(
             r"\bnot\s*pc\b|not\s*wanted.*suspect|"
             r"\bno\s*pc\b|no\s*probable\s*cause",
@@ -182,7 +182,7 @@ IFFY_CATEGORIES = [
     # Ethnicity used as the primary search descriptor rather than a
     # named suspect or specific crime. Expand this list for your data.
     (
-        "Racial/Ethnic — Ethnicity as Primary Descriptor",
+        "Racial/Ethnic - Ethnicity as Primary Descriptor",
         re.compile(
             # Romanian-linked patterns
             r"romanian\s*(crew|gang|group|suspect|burglar|crime|ring|skimmer|violin|jewelry|church|solicit)|"
@@ -209,7 +209,7 @@ IFFY_CATEGORIES = [
     # Race/gender shorthand codes entered in reason field:
     # B/M = Black Male, W/F = White Female, H/M = Hispanic Male, etc.
     (
-        "Sensitive PII — Race/Gender Codes in Reason",
+        "Sensitive PII - Race/Gender Codes in Reason",
         re.compile(
             r"\b[BWHAOINU]/[MF]\b",
             re.IGNORECASE,
@@ -220,7 +220,7 @@ IFFY_CATEGORIES = [
     # CIVIL / NON-CRIMINAL USE
     # -------------------------------------------------------------------------
     (
-        "Civil Use — Child / Family Custody",
+        "Civil Use - Child / Family Custody",
         re.compile(
             # Negative lookaheads exclude legitimate law enforcement phrases
             r"custody(?!\s+of\s+(fugitive|suspect|prisoner|escapee|offender|subject))"
@@ -232,7 +232,7 @@ IFFY_CATEGORIES = [
         ),
     ),
     (
-        "Civil Use — Restraining Order / Civil Matter",
+        "Civil Use - Restraining Order / Civil Matter",
         re.compile(
             r"restraining\s*order|\bTPO\b|\bDVPO\b|\bOFP\b|\bHRO\b|\bNCPO\b|"
             r"\bcivil\s*matter\b|\bcivil\s*case\b|"
@@ -253,7 +253,7 @@ IFFY_CATEGORIES = [
     # every time. Some matches may be legitimate (e.g. a crime at a clinic);
     # review before citing.
     (
-        "Reproductive Healthcare — Abortion-Related Search",
+        "Reproductive Healthcare - Abortion-Related Search",
         re.compile(
             r"\babortions?\b|planned\s*parenthood|"
             r"reproductive\s*(health|clinic|care|rights)|"
@@ -292,7 +292,7 @@ IFFY_CATEGORIES = [
     # MISSION CREEP — NON-CRIMINAL MUNICIPAL USE
     # -------------------------------------------------------------------------
     (
-        "Mission Creep — Non-Criminal Use",
+        "Mission Creep - Non-Criminal Use",
         re.compile(
             r"city\s*planning|traffic\s*analysis|urban\s*planning|"
             r"traffic\s*study|pedestrian\s*(count|study|analysis)|"
@@ -305,14 +305,14 @@ IFFY_CATEGORIES = [
     # SENSITIVE PII IN REASON FIELD
     # -------------------------------------------------------------------------
     (
-        "Sensitive PII — DOB in Reason",
+        "Sensitive PII - DOB in Reason",
         re.compile(
             r"\bdob\b|\bdate\s*of\s*birth\b",
             re.IGNORECASE,
         ),
     ),
     (
-        "Sensitive PII — ID / License Number in Reason",
+        "Sensitive PII - ID / License Number in Reason",
         re.compile(
             r"\bssn\b|\bsocial\s*security\b|"
             r"\bdl\s*[#:]?\s*\d{5,}|"
@@ -324,7 +324,7 @@ IFFY_CATEGORIES = [
     # are stored in a commercial vendor's database. "Sex offender" is excluded —
     # it's extremely common in legitimate warrant/compliance searches.
     (
-        "Sensitive Case — Rape / Child Exploitation in Reason",
+        "Sensitive Case - Rape / Child Exploitation in Reason",
         re.compile(
             r"rape\s*suspect|sexual\s*assault\s*suspect|"
             r"\bcsam\b|child\s*porn(ograph)?|child\s*exploit",
