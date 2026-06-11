@@ -264,6 +264,61 @@ IFFY_CATEGORIES = [
     ),
 
     # -------------------------------------------------------------------------
+    # RELIGIOUS / PRESS / GENDER-IDENTITY TARGETING, PRIVATE BAIL RECOVERY
+    # -------------------------------------------------------------------------
+    # These four were validated against a 1.8M-row Minnesota dataset. Three had
+    # zero hits — which is the point: zero is the good outcome, check every
+    # time. The religion pattern deliberately EXCLUDES the bare words "church"
+    # and "temple": in test data every church hit was the church as a
+    # burglary/theft VICTIM (plus an officer surnamed Church), and "temple"
+    # collides with place names like Temple, TX. If your data may phrase
+    # faith-surveillance via "church", review those rows manually.
+    (
+        "Religious Targeting - Faith-Based Search Descriptor",
+        re.compile(
+            r"\bmosque\b|\bmuslim\b|\bislamic\b|\bsynagogue\b|\bjewish\b|"
+            r"\bsikh\b|\bhindu\b|\bimam\b|\brabbi\b|"
+            r"(jewish|buddhist|hindu|sikh)\s*temple",
+            re.IGNORECASE,
+        ),
+    ),
+    # Bare "press" is excluded — "press charges" is everywhere in police logs.
+    (
+        "Press Freedom - Journalist / Media Targeting",
+        re.compile(
+            r"\bjournalist\b|\breporter\b|news\s*media|\bnewsroom\b|"
+            r"press\s*(pass|credential|conference)|media\s*(crew|vehicle)",
+            re.IGNORECASE,
+        ),
+    ),
+    # Same interstate abuse vector as the abortion case: several states
+    # criminalize gender-affirming care for minors; refuge-state camera
+    # networks are searchable by agencies from those states. Bare "trans",
+    # "drag", and "pride" are excluded ("transport", "transient",
+    # "drag racing", etc.).
+    (
+        "Gender Identity - Trans / LGBTQ+ / Gender-Affirming Care",
+        re.compile(
+            r"\btransgender\b|\btrans\s*(woman|man|male|female|kid|child|youth|person|people)\b|"
+            r"gender[- ]affirming|gender\s*(clinic|transition)|"
+            r"\blgbtq?\b|drag\s*(show|queen)|pride\s*(parade|event|fest)",
+            re.IGNORECASE,
+        ),
+    ),
+    # Bounty hunters and bail bondsmen are private commercial actors, not law
+    # enforcement. NOTE: "bail jumping" is itself a crime and is deliberately
+    # NOT matched — police searching for a bail jumper with a warrant is
+    # legitimate.
+    (
+        "Private Use - Bail Bond / Bounty Recovery",
+        re.compile(
+            r"\bbounty\b|bail\s*bond(sman)?|bail\s*recovery|"
+            r"fugitive\s*recovery\s*agent",
+            re.IGNORECASE,
+        ),
+    ),
+
+    # -------------------------------------------------------------------------
     # PERSONAL USE
     # -------------------------------------------------------------------------
     (
